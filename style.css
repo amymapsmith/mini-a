@@ -1,8 +1,10 @@
 :root {
-  --bg: #08080f;
-  --text: #ddddf0;
-  --muted: #52527a;
-  --border: rgba(255, 255, 255, 0.07);
+  --bg: #f2f5f2;
+  --card: #ffffff;
+  --text: #1a2220;
+  --muted: #6b7a74;
+  --border: #e2e8e4;
+  --track: #dae3dc;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -10,7 +12,7 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'DM Sans', -apple-system, sans-serif;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -18,31 +20,91 @@ body {
 }
 
 #app {
-  width: min(440px, 92vw);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07), 0 1px 4px rgba(0, 0, 0, 0.04);
+  padding: 36px 32px;
+  width: min(420px, 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 38px;
-  padding: 48px 0;
+  gap: 28px;
 }
 
 /* ── Header ── */
 
-header { text-align: center; }
-
-h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #fff;
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.subtitle {
-  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+
+.brand-name {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.brand-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  margin-top: 6px;
+  font-weight: 400;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.stat-rule {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+  flex-shrink: 0;
 }
 
 /* ── Ring + Orb ── */
@@ -66,13 +128,13 @@ h1 {
 
 .ring-track {
   fill: none;
-  stroke: var(--border);
-  stroke-width: 1.5;
+  stroke: var(--track);
+  stroke-width: 3;
 }
 
 .ring-fill {
   fill: none;
-  stroke-width: 2.5;
+  stroke-width: 4;
   stroke-linecap: round;
   transform-origin: center;
   transform: rotate(-90deg);
@@ -87,63 +149,76 @@ h1 {
   z-index: 2;
 }
 
-.pulse {
+.ripple {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.22;
-  animation: pulse 2.6s ease-in-out infinite;
+  border: 1.5px solid transparent;
+  opacity: 0;
+  animation: ripple 2.8s ease-out infinite;
   pointer-events: none;
-  transition: width 0.9s ease, height 0.9s ease, background 1.3s ease;
+  transition: width 0.9s ease, height 0.9s ease, border-color 1.3s ease;
+}
+
+@keyframes ripple {
+  0%   { transform: scale(1);    opacity: 0.5; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
 .face {
   border-radius: 50%;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.9s ease, height 0.9s ease, background 1.3s ease,
-              border-color 1.3s ease, box-shadow 1.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  transition: width 0.9s ease, height 0.9s ease, border-color 1.3s ease,
+              box-shadow 1.3s ease;
 }
 
-.emoji {
-  line-height: 1;
-  user-select: none;
-  transition: font-size 0.9s ease;
+.face i {
+  transition: font-size 0.9s ease, color 1.3s ease;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1);    opacity: 0.22; }
-  50%       { transform: scale(1.4); opacity: 0.07; }
-}
+/* ── Stage card ── */
 
-/* ── Stage info ── */
-
-.stage {
-  text-align: center;
+.stage-card {
+  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 7px;
+  padding: 18px 20px;
+  background: var(--bg);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.day-chip {
+  display: inline-flex;
   align-items: center;
-  gap: 9px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  width: fit-content;
+  transition: background 1.3s ease, color 1.3s ease;
 }
 
-.label {
-  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
-  font-size: 0.64rem;
-  letter-spacing: 0.24em;
-  color: var(--muted);
-}
-
-.stage h2 {
-  font-size: 1.5rem;
+.stage-card h2 {
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--text);
 }
 
-.stage p {
+.stage-card p {
   font-size: 0.875rem;
   line-height: 1.72;
-  color: rgba(221, 221, 240, 0.55);
-  max-width: 310px;
+  color: var(--muted);
+  font-weight: 400;
 }
 
 /* ── Timeline ── */
@@ -154,7 +229,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
 }
 
 .dot {
@@ -163,41 +238,32 @@ h1 {
   border-radius: 50%;
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.dot.past   { opacity: 0.5; }
+.dot.past   { opacity: 0.4; }
 .dot.current { transform: scale(1.65); }
-.dot.future  { background: transparent !important; border: 1px solid var(--muted); opacity: 0.28; }
+.dot.future  { background: transparent !important; border: 1.5px solid var(--track); opacity: 0.7; }
 
 .dot:hover { transform: scale(1.9) !important; opacity: 1 !important; }
 
 .range {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
+  margin-top: 8px;
+  font-family: 'DM Mono', monospace;
   font-size: 0.58rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   color: var(--muted);
 }
 
 /* ── Born state ── */
 
-body.born .ring {
-  animation: ring-breathe 1.8s ease-in-out infinite alternate;
-}
-
 body.born .face {
-  animation: face-breathe 1.8s ease-in-out infinite alternate;
+  animation: born-breathe 1.8s ease-in-out infinite alternate;
 }
 
-@keyframes ring-breathe {
-  from { filter: drop-shadow(0 0 4px rgba(245, 166, 35, 0.35)); }
-  to   { filter: drop-shadow(0 0 14px rgba(245, 166, 35, 0.75)); }
-}
-
-@keyframes face-breathe {
-  from { box-shadow: 0 0 18px rgba(245, 166, 35, 0.35), inset 0 0 18px rgba(245, 166, 35, 0.12); }
-  to   { box-shadow: 0 0 48px rgba(245, 166, 35, 0.65), inset 0 0 32px rgba(245, 166, 35, 0.28); }
+@keyframes born-breathe {
+  from { box-shadow: 0 0 0 0px rgba(180, 140, 50, 0.25), 0 2px 16px rgba(0,0,0,0.08); }
+  to   { box-shadow: 0 0 0 10px rgba(180, 140, 50, 0.08), 0 4px 28px rgba(180, 140, 50, 0.2); }
 }
