@@ -47,7 +47,7 @@ function stageColors(day) {
 }
 
 function orbPx(day) {
-  return Math.round(52 + 56 * (day - 1) / (TOTAL - 1));
+  return Math.round(44 + 48 * (day - 1) / (TOTAL - 1));
 }
 
 function renderStage(day) {
