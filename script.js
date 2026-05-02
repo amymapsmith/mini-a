@@ -9,7 +9,7 @@ const STAGES = [
   { day:  8, icon: "iconoir-terminal",      title: "slash command ideations", desc: "/bumbu. /convert. /save. /bachata. The full command set taking shape in the dark." },
   { day:  9, icon: "iconoir-chat-bubble",   title: "iMessage dreaming",       desc: "Dreaming in blue bubbles." },
   { day: 10, icon: "iconoir-magic-wand",    title: "automagic",               desc: "YouTube link in. Your preferred platform out." },
-  { day: 11, icon: "iconoir-dog",           title: "wildlife instinct",       desc: "Auto-pauses any conversation to play with a cute dog. Non-negotiable. Not a bug." },
+  { day: 11, icon: "iconoir-heart",          title: "wildlife instinct",       desc: "Auto-pauses any conversation to play with a cute dog. Non-negotiable. Not a bug." },
   { day: 12, icon: "iconoir-leaf",          title: "plant consciousness",     desc: "Learning the difference between thirsty and dramatic. Will not overwater. The plants are safe." },
   { day: 13, icon: "iconoir-home-simple",   title: "cleaning threshold set",  desc: "Identifying the exact moment mess becomes intolerable. Also: amy is coming over. same threshold." },
   { day: 14, icon: "iconoir-phone",         title: "dad deflection protocols",desc: "Loading warm, noncommittal responses to questions about relationships. Plausible deniability intact." },
