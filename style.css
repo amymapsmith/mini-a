@@ -10,7 +10,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image: url('bg.svg');
+  background-size: 500px 400px;
+  background-repeat: repeat;
   color: var(--text);
   font-family: 'DM Sans', -apple-system, sans-serif;
   min-height: 100vh;
@@ -29,10 +32,9 @@ body {
 
 .card {
   background: var(--card);
-  border-radius: 28px;
   box-shadow:
-    0 2px 8px hsla(28, 40%, 30%, 0.06),
-    0 8px 40px hsla(28, 40%, 30%, 0.09);
+    0 2px 8px hsla(28, 40%, 30%, 0.07),
+    0 8px 40px hsla(28, 40%, 30%, 0.10);
   padding: 40px 36px 36px;
   width: min(420px, 100%);
   display: flex;
@@ -79,7 +81,6 @@ header {
   gap: 18px;
   padding: 14px 18px;
   background: var(--bg);
-  border-radius: 14px;
   border: 1px solid var(--border);
 }
 
@@ -190,7 +191,6 @@ header {
   flex-direction: column;
   gap: 8px;
   padding: 22px 22px 20px;
-  border-radius: 18px;
   border: 1px solid var(--border);
   transition: background 1.4s ease;
 }
@@ -202,8 +202,7 @@ header {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 4px 11px;
-  border-radius: 100px;
+  padding: 4px 10px;
   width: fit-content;
   transition: background 1.4s ease, color 1.4s ease;
 }
@@ -228,33 +227,65 @@ header {
 
 .timeline { width: 100%; }
 
-.dots {
+.timeline-label {
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.days {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
+.day-btn {
+  background: none;
+  border: none;
   cursor: pointer;
-  flex-shrink: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  padding: 4px 1px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.15s ease;
 }
 
-.dot.past    { opacity: 0.38; }
-.dot.current { transform: scale(1.65); }
-.dot.future  { background: transparent !important; border: 1.5px solid var(--track); opacity: 0.7; }
+.day-btn:hover { transform: translateY(-3px); }
 
-.dot:hover { transform: scale(2) !important; opacity: 1 !important; }
+.day-sq {
+  display: block;
+  width: 9px;
+  height: 9px;
+  background: var(--track);
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.day-btn.past   .day-sq { opacity: 0.45; }
+.day-btn.current .day-sq { transform: scale(1.55); }
+.day-btn.future  .day-sq { background: transparent; border: 1.5px solid var(--track); opacity: 0.6; }
+
+.day-num {
+  font-size: 0.52rem;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.day-btn.current .day-num { font-weight: 700; }
+.day-btn.future  .day-num { opacity: 0.45; }
+.day-btn:hover   .day-num { color: var(--text); }
 
 .range {
   display: flex;
   justify-content: space-between;
-  margin-top: 9px;
-  font-size: 0.65rem;
+  margin-top: 7px;
+  font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--muted);

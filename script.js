@@ -103,35 +103,39 @@ function renderStage(day) {
   document.body.classList.toggle('born', day >= TOTAL);
 }
 
-function renderDots(active) {
-  const container = document.getElementById('dots');
+function renderDays(active) {
+  const container = document.getElementById('days');
   container.innerHTML = '';
 
   STAGES.forEach(s => {
-    const dot = document.createElement('div');
-    dot.className = 'dot';
     const c = stageColors(s.day);
 
-    if (s.day < active) {
-      dot.classList.add('past');
-      dot.style.background = c.main;
-    } else if (s.day === active) {
-      dot.classList.add('current');
-      dot.style.background = c.main;
-    } else {
-      dot.classList.add('future');
-    }
+    const btn = document.createElement('button');
+    btn.className = 'day-btn ' + (s.day < active ? 'past' : s.day === active ? 'current' : 'future');
+    btn.title = s.title;
+    btn.setAttribute('aria-label', `Day ${s.day}: ${s.title}`);
 
-    dot.title = `day ${s.day}: ${s.title}`;
-    dot.addEventListener('click', () => {
+    const sq = document.createElement('span');
+    sq.className = 'day-sq';
+    sq.style.background = c.main;
+
+    const num = document.createElement('span');
+    num.className = 'day-num';
+    num.textContent = s.day;
+    if (s.day === active) num.style.color = c.main;
+
+    btn.appendChild(sq);
+    btn.appendChild(num);
+
+    btn.addEventListener('click', () => {
       renderStage(s.day);
-      renderDots(s.day);
+      renderDays(s.day);
     });
 
-    container.appendChild(dot);
+    container.appendChild(btn);
   });
 }
 
 const current = todayDay();
 renderStage(current);
-renderDots(current);
+renderDays(current);
