@@ -30,19 +30,19 @@ function todayDay() {
   return Math.min(Math.max(n, 1), TOTAL);
 }
 
-// Days 1–15: hue sweeps 215 (blue) → 155 (sage). Day 16: 42 (warm amber).
+// Days 1–15: hue sweeps 165 (sage) → 42 (amber). Day 16: 42 (warm gold).
 function stageHue(day) {
   if (day >= TOTAL) return 42;
-  return Math.round(215 - 60 * (day - 1) / (TOTAL - 2));
+  return Math.round(165 - 123 * (day - 1) / (TOTAL - 2));
 }
 
 function stageColors(day) {
   const h = stageHue(day);
   return {
-    main:   `hsl(${h}, 52%, 46%)`,
-    light:  `hsl(${h}, 55%, 94%)`,
-    text:   `hsl(${h}, 52%, 36%)`,
-    ripple: `hsl(${h}, 52%, 46%)`,
+    main:   `hsl(${h}, 50%, 44%)`,
+    light:  `hsl(${h}, 42%, 94%)`,
+    text:   `hsl(${h}, 50%, 32%)`,
+    ripple: `hsl(${h}, 50%, 44%)`,
   };
 }
 
@@ -65,11 +65,12 @@ function renderStage(day) {
   icon.style.fontSize = Math.round(sz * 0.36) + 'px';
   icon.style.color    = c.main;
 
-  // Day chip
+  // Day chip + stage card tint
   const chip = document.getElementById('dayChip');
-  chip.textContent         = `DAY ${String(day).padStart(2, '0')}`;
+  chip.textContent         = `Day ${day} of ${TOTAL}`;
   chip.style.background    = c.light;
   chip.style.color         = c.text;
+  document.querySelector('.stage-card').style.background = c.light;
 
   // Stats row — days remaining
   const daysLeft = TOTAL - day;
