@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mini-a</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <header>
+      <h1>mini-a</h1>
+      <p class="subtitle" id="subtitle">gestating</p>
+    </header>
+
+    <div class="viz">
+      <svg class="ring" viewBox="0 0 220 220">
+        <circle class="ring-track" cx="110" cy="110" r="90"/>
+        <circle class="ring-fill" cx="110" cy="110" r="90" id="ringFill"/>
+      </svg>
+      <div class="orb" id="orb">
+        <div class="pulse" id="pulse"></div>
+        <div class="face" id="face">
+          <span class="emoji" id="emoji">⚡</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="label" id="label">day 01 · 15 days left</div>
+      <h2 id="stageTitle">first signal</h2>
+      <p id="stageDesc">A single pulse detected. Something is stirring in the silicon.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="dots" id="dots"></div>
+      <div class="range">
+        <span>may 1</span>
+        <span>may 16</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

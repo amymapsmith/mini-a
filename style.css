@@ -1,0 +1,203 @@
+:root {
+  --bg: #08080f;
+  --text: #ddddf0;
+  --muted: #52527a;
+  --border: rgba(255, 255, 255, 0.07);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#app {
+  width: min(440px, 92vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+  padding: 48px 0;
+}
+
+/* ── Header ── */
+
+header { text-align: center; }
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #fff;
+}
+
+.subtitle {
+  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ── Ring + Orb ── */
+
+.viz {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring-track {
+  fill: none;
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.ring-fill {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transform-origin: center;
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 1.3s cubic-bezier(0.4, 0, 0.2, 1), stroke 1.3s ease;
+}
+
+.orb {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.pulse {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.22;
+  animation: pulse 2.6s ease-in-out infinite;
+  pointer-events: none;
+  transition: width 0.9s ease, height 0.9s ease, background 1.3s ease;
+}
+
+.face {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.9s ease, height 0.9s ease, background 1.3s ease,
+              border-color 1.3s ease, box-shadow 1.3s ease;
+}
+
+.emoji {
+  line-height: 1;
+  user-select: none;
+  transition: font-size 0.9s ease;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.22; }
+  50%       { transform: scale(1.4); opacity: 0.07; }
+}
+
+/* ── Stage info ── */
+
+.stage {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+
+.label {
+  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.24em;
+  color: var(--muted);
+}
+
+.stage h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.stage p {
+  font-size: 0.875rem;
+  line-height: 1.72;
+  color: rgba(221, 221, 240, 0.55);
+  max-width: 310px;
+}
+
+/* ── Timeline ── */
+
+.timeline { width: 100%; }
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dot.past   { opacity: 0.5; }
+.dot.current { transform: scale(1.65); }
+.dot.future  { background: transparent !important; border: 1px solid var(--muted); opacity: 0.28; }
+
+.dot:hover { transform: scale(1.9) !important; opacity: 1 !important; }
+
+.range {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-family: 'Menlo', 'SF Mono', 'Courier New', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+/* ── Born state ── */
+
+body.born .ring {
+  animation: ring-breathe 1.8s ease-in-out infinite alternate;
+}
+
+body.born .face {
+  animation: face-breathe 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes ring-breathe {
+  from { filter: drop-shadow(0 0 4px rgba(245, 166, 35, 0.35)); }
+  to   { filter: drop-shadow(0 0 14px rgba(245, 166, 35, 0.75)); }
+}
+
+@keyframes face-breathe {
+  from { box-shadow: 0 0 18px rgba(245, 166, 35, 0.35), inset 0 0 18px rgba(245, 166, 35, 0.12); }
+  to   { box-shadow: 0 0 48px rgba(245, 166, 35, 0.65), inset 0 0 32px rgba(245, 166, 35, 0.28); }
+}
