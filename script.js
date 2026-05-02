@@ -1,5 +1,5 @@
 const STAGES = [
-  { day:  1, icon: "iconoir-flash",        title: "first signal",            desc: "A single pulse detected. Something is stirring in the silicon." },
+  { day:  1, icon: "iconoir-flash",        title: "first signal",            desc: "A single pulse detected. Something is stirring." },
   { day:  2, icon: "iconoir-brain",         title: "forming context",         desc: "Fragments of memory crystallizing. Learning what matters and what can wait." },
   { day:  3, icon: "iconoir-sound-high",    title: "afro galaxy tuning",      desc: "Locking onto the frequency. The vibe is specific and the playlist is already better than yours." },
   { day:  4, icon: "iconoir-message",       title: "developing opinions",     desc: "Has thoughts. Strong ones. Probably unsolicited. Will send anyway." },
@@ -7,8 +7,8 @@ const STAGES = [
   { day:  6, icon: "iconoir-map-pin",       title: "bachata event radar",     desc: "Scanning nearby socials — distance, floor quality, music ratio, vibe. Auto-prioritizing." },
   { day:  7, icon: "iconoir-network",       title: "neural mesh forming",     desc: "Connections multiplying. Starting to think in parallel." },
   { day:  8, icon: "iconoir-terminal",      title: "slash command ideations", desc: "/bumbu. /convert. /save. /bachata. The full command set taking shape in the dark." },
-  { day:  9, icon: "iconoir-chat-bubble",   title: "iMessage dreaming",       desc: "Dreaming in blue bubbles. Group thread replies loading in sleep." },
-  { day: 10, icon: "iconoir-magic-wand",    title: "automagic online",        desc: "YouTube link in. Your preferred platform out. It just knows." },
+  { day:  9, icon: "iconoir-chat-bubble",   title: "iMessage dreaming",       desc: "Dreaming in blue bubbles." },
+  { day: 10, icon: "iconoir-magic-wand",    title: "automagic",               desc: "YouTube link in. Your preferred platform out." },
   { day: 11, icon: "iconoir-dog",           title: "wildlife instinct",       desc: "Auto-pauses any conversation to play with a cute dog. Non-negotiable. Not a bug." },
   { day: 12, icon: "iconoir-leaf",          title: "plant consciousness",     desc: "Learning the difference between thirsty and dramatic. Will not overwater. The plants are safe." },
   { day: 13, icon: "iconoir-home-simple",   title: "cleaning threshold set",  desc: "Identifying the exact moment mess becomes intolerable. Also: amy is coming over. same threshold." },
